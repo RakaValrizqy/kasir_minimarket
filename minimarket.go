@@ -19,11 +19,12 @@ type tabTrans [nMax]transaksi
 
 func main(){
 	var listProd tabProd
-	// var listTrans tabTrans
-	var pilih, nProd int
+	var listTrans tabTrans
+	var pilih, nProd, nTrans int
 	var cari string
 
 	nProd = 0
+	nTrans = 0
 
 	for pilih != 8 {
 		menu()
@@ -33,6 +34,10 @@ func main(){
 			tambahProd(&listProd,&nProd)
 		case 2:
 			tampilProd(listProd,nProd)
+		case 3:
+			tambahTrans(&listTrans,listProd,&nTrans,nProd)
+		case 4:
+			tampilTrans(listTrans,nTrans)
 		case 5:
 			fmt.Scan(&cari)
 			cariProd(listProd,nProd,cari)
@@ -48,7 +53,7 @@ func main(){
 
 func menu(){
 	fmt.Println("MAIN MENU")
-	fmt.Println("1. Tambah produk\n2. Lihat produk\n3. Tambah transaksi\n4. Omzet hari ini\n5. Cari produk\n6. Ubah produk\n7. Hapus produk\n8. Exit")
+	fmt.Println("1. Tambah produk\n2. Lihat produk\n3. Tambah transaksi\n4. Tampil transaksi\n5. Cari produk\n6. Ubah produk\n7. Hapus produk\n8. Exit")
 	fmt.Print("Pilih: ")
 }
 
@@ -137,6 +142,39 @@ func hapusProd(A *tabProd, n *int, x string){
 			A[index] = A[index+1]
 			index++
 		}
+	}
+	fmt.Println(" ")
+}
+
+func tambahTrans(T *tabTrans, P tabProd, nT *int, nP int){
+	/*	I.S terdefinisi array P, bilangan bulat nP
+		F.S array T berisi data produk sebanyak nT	*/
+	var nom, banyak int
+
+	tampilProd(P,nP)
+	fmt.Println("Tambah transaksi: (nomor) (banyak)")
+	fmt.Println("Cancel: input -1")
+	fmt.Scan(&nom)
+	for nom != -1 {
+		fmt.Scan(&banyak)
+		T[*nT].prod = P[nom-1]
+		T[*nT].banyak = banyak
+		T[*nT].subtotal = P[nom-1].harga*banyak
+		*nT++
+
+		fmt.Scan(&nom)	
+	}
+}
+
+func tampilTrans(T tabTrans, n int){
+	/*	I.S terdefinisi array T dan n
+		F.S menampilkan seluruh data dalam array T	*/
+	var i int
+
+	i=0
+	for i<n {
+		fmt.Println(i+1,T[i].prod.nama,T[i].prod.harga,T[i].banyak,T[i].subtotal)
+		i++
 	}
 	fmt.Println(" ")
 }
