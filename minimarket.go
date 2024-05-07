@@ -46,6 +46,8 @@ func main(){
 		case 7:
 			fmt.Scan(&cari)
 			hapusProd(&listProd,&nProd,cari)
+		case 9:
+			fmt.Println("Omzet hari ini:",hitungOmzet(listTrans,nTrans))
 		}
 	}
 
@@ -53,7 +55,7 @@ func main(){
 
 func menu(){
 	fmt.Println("MAIN MENU")
-	fmt.Println("1. Tambah produk\n2. Lihat produk\n3. Tambah transaksi\n4. Tampil transaksi\n5. Cari produk\n6. Ubah produk\n7. Hapus produk\n8. Exit")
+	fmt.Println("1. Tambah produk\n2. Lihat produk\n3. Tambah transaksi\n4. Tampil transaksi\n5. Cari produk\n6. Ubah produk\n7. Hapus produk\n8. Exit,\n9. Omzet hari ini")
 	fmt.Print("Pilih: ")
 }
 
@@ -177,4 +179,18 @@ func tampilTrans(T tabTrans, n int){
 		i++
 	}
 	fmt.Println(" ")
+}
+
+func hitungOmzet(T tabTrans, n int)int{
+	//mengembalikan nilai omzet dari array T
+	var i, omzet int
+
+	i=0
+	omzet = 0
+
+	for i<n {
+		omzet += T[i].subtotal
+		i++
+	}
+	return omzet
 }
