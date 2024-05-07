@@ -21,10 +21,11 @@ func main(){
 	var listProd tabProd
 	// var listTrans tabTrans
 	var pilih, nProd int
+	var cari string
 
 	nProd = 0
 
-	for pilih != 5 {
+	for pilih != 7 {
 		menu()
 		fmt.Scan(&pilih)
 		switch pilih {
@@ -32,6 +33,9 @@ func main(){
 			tambahProd(&listProd,&nProd)
 		case 2:
 			tampilProd(listProd,nProd)
+		case 5:
+			fmt.Scan(&cari)
+			cariProd(listProd,nProd,cari)
 		}
 	}
 
@@ -39,7 +43,7 @@ func main(){
 
 func menu(){
 	fmt.Println("MAIN MENU")
-	fmt.Println("1. Tambah produk\n2. Lihat produk\n3. Tambah transaksi\n4. Omze hari ini\n5. Exit")
+	fmt.Println("1. Tambah produk\n2. Lihat produk\n3. Tambah transaksi\n4. Omze hari ini\n5. Cari produk\n6. Hapus produk\n7. Exit")
 	fmt.Print("Pilih: ")
 }
 
@@ -47,9 +51,6 @@ func tambahProd(A *tabProd, n *int){
 	/*	I.S terdefinisi n adalah banyak data dalam array
 		F.S Array A berisi data produk sebanyak n	*/
 	var nama string
-	// var i int
-
-	// i = *n
 	
 	fmt.Scan(&nama)
 	for nama != "done" {
@@ -73,4 +74,25 @@ func tampilProd(A tabProd, n int){
 		i++
 	}
 	fmt.Println(" ")
+}
+
+func cariProd(A tabProd, n int, x string){
+	/*	I.S terdefinisi array A dan n
+		F.S menampilkan data dalam array A jika nama produk sama dengan x	*/
+	var i, index int
+
+	index = -1
+	i=0
+	for i<n && index == -1 {
+		if A[i].nama == x {
+			index = i
+		}
+		i++
+	}
+
+	if index == -1 {
+		fmt.Println("Produk tidak ditemukan")
+	} else {
+		fmt.Println("Index produk:",index,"\nNama produk:",A[index].nama,"\nHarga produk:",A[index].harga)
+	}
 }
