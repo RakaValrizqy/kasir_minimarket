@@ -25,7 +25,7 @@ func main(){
 
 	nProd = 0
 
-	for pilih != 7 {
+	for pilih != 8 {
 		menu()
 		fmt.Scan(&pilih)
 		switch pilih {
@@ -36,6 +36,8 @@ func main(){
 		case 5:
 			fmt.Scan(&cari)
 			cariProd(listProd,nProd,cari)
+		case 6:
+			ubahProd(&listProd,nProd)
 		}
 	}
 
@@ -43,7 +45,7 @@ func main(){
 
 func menu(){
 	fmt.Println("MAIN MENU")
-	fmt.Println("1. Tambah produk\n2. Lihat produk\n3. Tambah transaksi\n4. Omze hari ini\n5. Cari produk\n6. Hapus produk\n7. Exit")
+	fmt.Println("1. Tambah produk\n2. Lihat produk\n3. Tambah transaksi\n4. Omzet hari ini\n5. Cari produk\n6. Ubah produk\n7. Hapus produk\n8. Exit")
 	fmt.Print("Pilih: ")
 }
 
@@ -105,7 +107,21 @@ func cariProd(A tabProd, n int, x string){
 	fmt.Println(" ")
 }
 
+func ubahProd(A *tabProd, n int){
+	/*	I.S terdefinisi array A dan bilangan bulat n
+		F.S mengubah data dalam array A		*/
+	var nom int
+
+	tampilProd(*A,n)
+	fmt.Print("Nomor produk yang ingin diubah: ")
+	fmt.Scan(&nom)
+
+	fmt.Println("Data produk baru: (nama) (harga)")
+	fmt.Scan(&A[nom-1].nama,&A[nom-1].harga)
+}
+
 func hapusProd(A tabProd, n int, x string){
 	/*	I.S terdefinisi array A, bilangan bulat n dan string x
 		F.S menghapus data dalam array A jika nama produk sama dengan x	*/
+	
 }
