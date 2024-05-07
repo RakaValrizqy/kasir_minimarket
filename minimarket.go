@@ -38,6 +38,9 @@ func main(){
 			cariProd(listProd,nProd,cari)
 		case 6:
 			ubahProd(&listProd,nProd)
+		case 7:
+			fmt.Scan(&cari)
+			hapusProd(&listProd,&nProd,cari)
 		}
 	}
 
@@ -120,8 +123,20 @@ func ubahProd(A *tabProd, n int){
 	fmt.Scan(&A[nom-1].nama,&A[nom-1].harga)
 }
 
-func hapusProd(A tabProd, n int, x string){
+func hapusProd(A *tabProd, n *int, x string){
 	/*	I.S terdefinisi array A, bilangan bulat n dan string x
 		F.S menghapus data dalam array A jika nama produk sama dengan x	*/
-	
+	var index int
+
+	index = cariIndex(*A,*n,x)
+	if index == -1 {
+		fmt.Println("Produk tidak ditemukan")
+	} else {
+		*n -= 1
+		for index < *n {
+			A[index] = A[index+1]
+			index++
+		}
+	}
+	fmt.Println(" ")
 }
