@@ -18,5 +18,19 @@ type tabProd [nMax]produk
 type tabTrans [nMax]transaksi
 
 func main(){
+	// var listProd tabProd
+	// var listTrans tabTrans
+	var pilih int
 
+	for pilih != 5 {
+		menu()
+		fmt.Scan(&pilih)
+	}
+
+}
+
+func menu(){
+	fmt.Println("MAIN MENU")
+	fmt.Println("1. Tambah produk\n2. Lihat produk\n3. Tambah transaksi\n4. Omze hari ini\n5. Exit")
+	fmt.Print("Pilih: ")
 }
