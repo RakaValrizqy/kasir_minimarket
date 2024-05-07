@@ -76,9 +76,8 @@ func tampilProd(A tabProd, n int){
 	fmt.Println(" ")
 }
 
-func cariProd(A tabProd, n int, x string){
-	/*	I.S terdefinisi array A dan n
-		F.S menampilkan data dalam array A jika nama produk sama dengan x	*/
+func cariIndex(A tabProd, n int, x string)int{
+	//mengembalikan index dari array A jika terdapat data dalam array A yang sama dengan x
 	var i, index int
 
 	index = -1
@@ -89,10 +88,24 @@ func cariProd(A tabProd, n int, x string){
 		}
 		i++
 	}
+	return index
+}
 
+func cariProd(A tabProd, n int, x string){
+	/*	I.S terdefinisi array A, bilangan bulat n dan string x
+		F.S menampilkan data dalam array A jika nama produk sama dengan x	*/
+	var index int
+
+	index = cariIndex(A,n,x)
 	if index == -1 {
 		fmt.Println("Produk tidak ditemukan")
 	} else {
 		fmt.Println("Index produk:",index,"\nNama produk:",A[index].nama,"\nHarga produk:",A[index].harga)
 	}
+	fmt.Println(" ")
+}
+
+func hapusProd(A tabProd, n int, x string){
+	/*	I.S terdefinisi array A, bilangan bulat n dan string x
+		F.S menghapus data dalam array A jika nama produk sama dengan x	*/
 }
