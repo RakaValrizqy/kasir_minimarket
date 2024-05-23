@@ -12,6 +12,7 @@ type transaksi struct {
 	prod produk
 	banyak int
 	subtotal int
+	tanggal string
 }
 
 type tabProd [nMax]produk
@@ -21,7 +22,7 @@ func main(){
 	var listProd tabProd
 	var listTrans tabTrans
 	var pilih, nProd, nTrans int
-	var cari string
+	var cari, tgl string
 
 	nProd = 0
 	nTrans = 0
@@ -47,7 +48,8 @@ func main(){
 			fmt.Scan(&cari)
 			hapusProd(&listProd,&nProd,cari)
 		case 9:
-			fmt.Println("Omzet hari ini:",hitungOmzet(listTrans,nTrans))
+			fmt.Scan(&tgl)
+			fmt.Printf("Omzet pada hari %s: %d\n",tgl,hitungOmzet(listTrans,nTrans,tgl))
 		}
 	}
 
@@ -152,8 +154,11 @@ func tambahTrans(T *tabTrans, P tabProd, nT *int, nP int){
 	/*	I.S terdefinisi array P, bilangan bulat nP
 		F.S array T berisi data produk sebanyak nT	*/
 	var nom, banyak int
+	var tgl string
 
 	tampilProd(P,nP)
+	fmt.Print("Masukkan tanggal transaksi: ")
+	fmt.Scan(&tgl)
 	fmt.Println("Tambah transaksi: (nomor) (banyak)")
 	fmt.Println("Cancel: input -1")
 	fmt.Scan(&nom)
@@ -162,6 +167,7 @@ func tambahTrans(T *tabTrans, P tabProd, nT *int, nP int){
 		T[*nT].prod = P[nom-1]
 		T[*nT].banyak = banyak
 		T[*nT].subtotal = P[nom-1].harga*banyak
+		T[*nT].tanggal = tgl
 		*nT++
 
 		fmt.Scan(&nom)	
@@ -175,13 +181,13 @@ func tampilTrans(T tabTrans, n int){
 
 	i=0
 	for i<n {
-		fmt.Println(i+1,T[i].prod.nama,T[i].prod.harga,T[i].banyak,T[i].subtotal)
+		fmt.Println(i+1,T[i].prod.nama,T[i].prod.harga,T[i].banyak,T[i].subtotal,T[i].tanggal)
 		i++
 	}
 	fmt.Println(" ")
 }
 
-func hitungOmzet(T tabTrans, n int)int{
+func hitungOmzet(T tabTrans, n int, tgl string)int{
 	//mengembalikan nilai omzet dari array T
 	var i, omzet int
 
@@ -189,7 +195,9 @@ func hitungOmzet(T tabTrans, n int)int{
 	omzet = 0
 
 	for i<n {
-		omzet += T[i].subtotal
+		if T[i].tanggal == tgl {
+			omzet += T[i].subtotal
+		}
 		i++
 	}
 	return omzet
