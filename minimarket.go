@@ -48,6 +48,7 @@ func main(){
 			fmt.Scan(&cari)
 			hapusProd(&listProd,&nProd,cari)
 		case 9:
+			fmt.Print("Tanggal transaksi: ")
 			fmt.Scan(&tgl)
 			fmt.Printf("Omzet pada hari %s: %d\n",tgl,hitungOmzet(listTrans,nTrans,tgl))
 		}
@@ -57,7 +58,7 @@ func main(){
 
 func menu(){
 	fmt.Println("MAIN MENU")
-	fmt.Println("1. Tambah produk\n2. Lihat produk\n3. Tambah transaksi\n4. Tampil transaksi\n5. Cari produk\n6. Ubah produk\n7. Hapus produk\n8. Exit,\n9. Omzet hari ini")
+	fmt.Println("1. Tambah produk\n2. Lihat produk\n3. Tambah transaksi\n4. Tampil transaksi\n5. Cari produk\n6. Ubah produk\n7. Hapus produk\n8. Exit\n9. Omzet hari ini")
 	fmt.Print("Pilih: ")
 }
 
@@ -66,6 +67,7 @@ func tambahProd(A *tabProd, n *int){
 		F.S Array A berisi data produk sebanyak n	*/
 	var nama string
 	
+	fmt.Println("Tambah produk: (nama) (harga)\nKetika done ketika selesai")
 	fmt.Scan(&nama)
 	for nama != "done" {
 		A[*n].nama = nama
@@ -82,9 +84,11 @@ func tampilProd(A tabProd, n int){
 	var i int
 
 	i=0
-	fmt.Println("\nLIST PRODUK")
+	fmt.Println("\t\tLIST PRODUK")
+	fmt.Printf("\tnomor \tnama produk \tharga\n")
 	for i<n {
-		fmt.Println(i+1,".",A[i].nama,A[i].harga)
+		// fmt.Println(i+1,".",A[i].nama,A[i].harga)
+		fmt.Printf("\t%d. \t%s \t%d\n",i+1,A[i].nama,A[i].harga)
 		i++
 	}
 	fmt.Println(" ")
@@ -188,7 +192,7 @@ func tampilTrans(T tabTrans, n int){
 }
 
 func hitungOmzet(T tabTrans, n int, tgl string)int{
-	//mengembalikan nilai omzet dari array T
+	//mengembalikan nilai omzet dari array T jika T[].tanggal == tgl
 	var i, omzet int
 
 	i=0
