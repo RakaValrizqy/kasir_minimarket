@@ -51,6 +51,8 @@ func main(){
 			fmt.Print("Tanggal transaksi: ")
 			fmt.Scan(&tgl)
 			fmt.Printf("Omzet pada hari %s: %d\n",tgl,hitungOmzet(listTrans,nTrans,tgl))
+		default:
+			fmt.Println("Pilih menu 1-9")
 		}
 	}
 
@@ -67,7 +69,7 @@ func tambahProd(A *tabProd, n *int){
 		F.S Array A berisi data produk sebanyak n	*/
 	var nama string
 	
-	fmt.Println("Tambah produk: (nama) (harga)\nKetika done ketika selesai")
+	fmt.Println("Tambah produk: (nama) (harga)\nKetik done ketika selesai")
 	fmt.Scan(&nama)
 	for nama != "done" {
 		A[*n].nama = nama
