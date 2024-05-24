@@ -38,6 +38,7 @@ func main(){
 		case 3:
 			tambahTrans(&listTrans,listProd,&nTrans,nProd)
 		case 4:
+			selSortTrans(&listTrans,nTrans)
 			tampilTrans(listTrans,nTrans)
 		case 5:
 			fmt.Scan(&cari)
@@ -207,4 +208,48 @@ func hitungOmzet(T tabTrans, n int, tgl string)int{
 		i++
 	}
 	return omzet
+}
+
+func selSortTrans(A *tabTrans, n int){
+	var i, j, max, min, pass, sort int
+	var temp transaksi
+
+	fmt.Println("Urutkan berdasarkan:\n1. Terbesar\n2. Terkecil")
+	fmt.Scan(&sort)
+
+	pass = n-1
+
+	switch sort {
+		case 1:
+			for i=0; i<pass; i++ {
+				max = i
+				for j=i+1; j<n; j++ {
+					if A[max].subtotal < A[j].subtotal {
+						max = j
+					}
+					
+				}
+		
+				temp = A[i]
+				A[i] = A[max]
+				A[max] = temp
+			}
+		case 2:
+			for i=0; i<pass; i++ {
+				min = i
+				for j=i+1; j<n; j++ {
+					if A[min].subtotal > A[j].subtotal {
+						min = j
+					}
+					
+				}
+		
+				temp = A[i]
+				A[i] = A[min]
+				A[min] = temp
+			}
+		default:
+			fmt.Println("Pilih 1-2")
+	}
+	
 }
