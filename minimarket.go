@@ -257,18 +257,18 @@ func selSortTrans(A *tabTrans, n int){
 
 func inserSortProd(A *tabProd, n int){
 	var i, pass int
-	var temp string
+	var temp produk
 
 	pass = 1
 
 	for pass < n {
 		i = pass
-		temp = A[pass].nama
-		for i > 0 && temp < A[i-1].nama {
+		temp = A[pass]
+		for i > 0 && temp.nama < A[i-1].nama {
 			A[i] = A[i-1]
 			i -= 1
 		}
-		A[i].nama = temp
+		A[i] = temp
 		pass += 1
 	}
 }
