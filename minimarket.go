@@ -33,6 +33,7 @@ func main(){
 		switch pilih {
 		case 1:
 			tambahProd(&listProd,&nProd)
+			inserSortProd(&listProd,nProd)
 		case 2:
 			tampilProd(listProd,nProd)
 		case 3:
@@ -252,4 +253,22 @@ func selSortTrans(A *tabTrans, n int){
 			fmt.Println("Pilih 1-2")
 	}
 	
+}
+
+func inserSortProd(A *tabProd, n int){
+	var i, pass int
+	var temp string
+
+	pass = 1
+
+	for pass < n {
+		i = pass
+		temp = A[pass].nama
+		for i > 0 && temp < A[i-1].nama {
+			A[i] = A[i-1]
+			i -= 1
+		}
+		A[i].nama = temp
+		pass += 1
+	}
 }
