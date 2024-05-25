@@ -100,16 +100,23 @@ func tampilProd(A tabProd, n int){
 
 func cariIndex(A tabProd, n int, x string)int{
 	//mengembalikan index dari array A jika terdapat data dalam array A yang sama dengan x
-	var i, index int
+	var index, ki, te, ka int
 
 	index = -1
-	i=0
-	for i<n && index == -1 {
-		if A[i].nama == x {
-			index = i
+	ki=0
+	ka=n-1
+	
+	for index == -1 && ki<=ka {
+		te = (ki+ka)/2
+		if x < A[te].nama {
+			ka = te-1
+		} else if x > A[te].nama {
+			ki = te+1
+		} else {
+			index = te
 		}
-		i++
 	}
+
 	return index
 }
 
