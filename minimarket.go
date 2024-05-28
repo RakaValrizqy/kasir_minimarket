@@ -88,14 +88,16 @@ func tampilProd(A tabProd, n int){
 	var i int
 
 	i=0
-	fmt.Println("\t\tLIST PRODUK")
-	fmt.Printf("\tnomor \tnama produk \tharga\n")
+	fmt.Println("---------------------------------------------")
+	fmt.Printf("%27s\n","LIST PRODUK")
+	fmt.Println("---------------------------------------------")
+	fmt.Printf("|%5s| %20s| %15s|\n","Nomor","Nama Barang","Harga")
 	for i<n {
 		// fmt.Println(i+1,".",A[i].nama,A[i].harga)
-		fmt.Printf("\t%d. \t%s \t%d\n",i+1,A[i].nama,A[i].harga)
+		fmt.Printf("|%5d| %20s| %15d|\n",i+1,A[i].nama,A[i].harga)
 		i++
 	}
-	fmt.Println(" ")
+	fmt.Println("---------------------------------------------")
 }
 
 func cariIndex(A tabProd, n int, x string)int{
