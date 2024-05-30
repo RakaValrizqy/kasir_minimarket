@@ -27,7 +27,7 @@ func main(){
 	nProd = 0
 	nTrans = 0
 
-	for pilih != 8 {
+	for pilih != 9 {
 		menu()
 		fmt.Scan(&pilih)
 		switch pilih {
@@ -35,21 +35,21 @@ func main(){
 			tambahProd(&listProd,&nProd)
 			inserSortProd(&listProd,nProd)
 		case 2:
-			tampilProd(listProd,nProd)
-		case 3:
-			tambahTrans(&listTrans,listProd,&nTrans,nProd)
-		case 4:
-			selSortTrans(&listTrans,nTrans)
-			tampilTrans(listTrans,nTrans)
-		case 5:
 			fmt.Scan(&cari)
 			cariProd(listProd,nProd,cari)
-		case 6:
+		case 3:
 			ubahProd(&listProd,nProd)
-		case 7:
+		case 4:
 			fmt.Scan(&cari)
 			hapusProd(&listProd,&nProd,cari)
-		case 9:
+		case 5:
+			tampilProd(listProd,nProd)
+		case 6:
+			tambahTrans(&listTrans,listProd,&nTrans,nProd)
+		case 7:
+			selSortTrans(&listTrans,nTrans)
+			tampilTrans(listTrans,nTrans)
+		case 8:
 			fmt.Print("Tanggal transaksi: ")
 			fmt.Scan(&tgl)
 			fmt.Printf("Omzet pada hari %s: %d\n",tgl,hitungOmzet(listTrans,nTrans,tgl))
@@ -62,7 +62,7 @@ func main(){
 
 func menu(){
 	fmt.Println("MAIN MENU")
-	fmt.Println("1. Tambah produk\n2. Lihat produk\n3. Tambah transaksi\n4. Tampil transaksi\n5. Cari produk\n6. Ubah produk\n7. Hapus produk\n8. Exit\n9. Omzet hari ini")
+	fmt.Println("1. Tambah produk\n2. Cari produk\n3. Ubah produk\n4. Hapus produk\n5. Lihat produk\n6. Tambah transaksi\n7. Tampil transaksi\n8. Omzet hari ini\n9. Exit")
 	fmt.Print("Pilih: ")
 }
 
