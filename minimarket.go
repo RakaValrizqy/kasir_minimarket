@@ -74,7 +74,7 @@ func tambahProd(A *tabProd, n *int){
 		F.S Array A berisi data produk sebanyak n	*/
 	var nama string
 	
-	fmt.Println("Tambah produk: (nama) (harga)\nKetik done ketika selesai")
+	fmt.Println("Tambah produk: (nama) (harga)\nKetik done untuk mengakhiri")
 	fmt.Scan(&nama)
 	for nama != "done" {
 		A[*n].nama = nama
@@ -181,7 +181,7 @@ func tambahTrans(T *tabTrans, P tabProd, nT *int, nP int){
 	fmt.Print("Masukkan tanggal transaksi: ")
 	fmt.Scan(&tgl)
 	fmt.Println("Tambah transaksi: (nomor produk) (banyak produk)")
-	fmt.Println("Cancel: input -1")
+	fmt.Println("Ketik -1 untuk mengakhiri")
 	fmt.Scan(&nom)
 	for nom != -1 {
 		fmt.Scan(&banyak)
