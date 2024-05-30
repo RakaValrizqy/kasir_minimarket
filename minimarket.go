@@ -230,6 +230,8 @@ func hitungOmzet(T tabTrans, n int, tgl string)int{
 }
 
 func selSortTrans(A *tabTrans, n int){
+	/*	I.S Terdefinisi Array list transaksi A dengan panjang n dan diasumsikan belum terurut
+		F.S Array list transaksi A dengan panjang n terurut secara ascending atau descending sesuai keingininan pengguna*/
 	var i, j, max, min, pass, sort int
 	var temp transaksi
 
