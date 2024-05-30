@@ -35,11 +35,14 @@ func main(){
 			tambahProd(&listProd,&nProd)
 			inserSortProd(&listProd,nProd)
 		case 2:
+			fmt.Println("Masukkan nama produk yang ingin dicari:")
 			fmt.Scan(&cari)
 			cariProd(listProd,nProd,cari)
 		case 3:
 			ubahProd(&listProd,nProd)
 		case 4:
+			tampilProd(listProd,nProd)
+			fmt.Println("Masukkan nama produk yang ingin dihapus:")
 			fmt.Scan(&cari)
 			hapusProd(&listProd,&nProd,cari)
 		case 5:
@@ -52,7 +55,7 @@ func main(){
 		case 8:
 			fmt.Print("Tanggal transaksi: ")
 			fmt.Scan(&tgl)
-			fmt.Printf("Omzet pada hari %s: %d\n",tgl,hitungOmzet(listTrans,nTrans,tgl))
+			fmt.Printf("Omzet pada tanggal %s: %d\n",tgl,hitungOmzet(listTrans,nTrans,tgl))
 		default:
 			fmt.Println("Pilih menu 1-9")
 		}
@@ -62,7 +65,7 @@ func main(){
 
 func menu(){
 	fmt.Println("MAIN MENU")
-	fmt.Println("1. Tambah produk\n2. Cari produk\n3. Ubah produk\n4. Hapus produk\n5. Lihat produk\n6. Tambah transaksi\n7. Tampil transaksi\n8. Omzet hari ini\n9. Exit")
+	fmt.Println("1. Tambah produk\n2. Cari produk\n3. Ubah produk\n4. Hapus produk\n5. Lihat produk\n6. Tambah transaksi\n7. Tampil transaksi\n8. Omzet berdasarkan tanggal\n9. Exit")
 	fmt.Print("Pilih: ")
 }
 
@@ -163,8 +166,9 @@ func hapusProd(A *tabProd, n *int, x string){
 			A[index] = A[index+1]
 			index++
 		}
+		fmt.Println("Produk berhasil dihapus")
+		tampilProd(*A,*n)
 	}
-	fmt.Println(" ")
 }
 
 func tambahTrans(T *tabTrans, P tabProd, nT *int, nP int){
@@ -176,7 +180,7 @@ func tambahTrans(T *tabTrans, P tabProd, nT *int, nP int){
 	tampilProd(P,nP)
 	fmt.Print("Masukkan tanggal transaksi: ")
 	fmt.Scan(&tgl)
-	fmt.Println("Tambah transaksi: (nomor) (banyak)")
+	fmt.Println("Tambah transaksi: (nomor produk) (banyak produk)")
 	fmt.Println("Cancel: input -1")
 	fmt.Scan(&nom)
 	for nom != -1 {
@@ -197,11 +201,16 @@ func tampilTrans(T tabTrans, n int){
 	var i int
 
 	i=0
+
+	fmt.Println("---------------------------------------------------------------------------------------------")
+	fmt.Printf("%50s\n","LIST TRANSAKSI")
+	fmt.Println("---------------------------------------------------------------------------------------------")
+	fmt.Printf("|%5s| %20s| %15s| %8s| %15s| %17s|\n","Nomor","Nama Barang","Harga","Banyak","Subtotal","Tanggal transaksi")
 	for i<n {
-		fmt.Println(i+1,T[i].prod.nama,T[i].prod.harga,T[i].banyak,T[i].subtotal,T[i].tanggal)
+		fmt.Printf("|%5d| %20s| %15d| %8d| %15d| %17s|\n",i+1,T[i].prod.nama,T[i].prod.harga,T[i].banyak,T[i].subtotal,T[i].tanggal)
 		i++
 	}
-	fmt.Println(" ")
+	fmt.Println("---------------------------------------------------------------------------------------------")
 }
 
 func hitungOmzet(T tabTrans, n int, tgl string)int{
@@ -224,7 +233,7 @@ func selSortTrans(A *tabTrans, n int){
 	var i, j, max, min, pass, sort int
 	var temp transaksi
 
-	fmt.Println("Urutkan berdasarkan:\n1. Terbesar\n2. Terkecil")
+	fmt.Println("Urutkan berdasarkan subtotal:\n1. Terbesar\n2. Terkecil")
 	fmt.Scan(&sort)
 
 	pass = n-1
