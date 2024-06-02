@@ -202,15 +202,15 @@ func tampilTrans(T tabTrans, n int){
 
 	i=0
 
-	fmt.Println("---------------------------------------------------------------------------------------------")
+	fmt.Println("--------------------------------------------------------------------------------------------")
 	fmt.Printf("%50s\n","LIST TRANSAKSI")
-	fmt.Println("---------------------------------------------------------------------------------------------")
+	fmt.Println("--------------------------------------------------------------------------------------------")
 	fmt.Printf("|%5s| %20s| %15s| %8s| %15s| %17s|\n","Nomor","Nama Produk","Harga","Banyak","Subtotal","Tanggal transaksi")
 	for i<n {
 		fmt.Printf("|%5d| %20s| %15d| %8d| %15d| %17s|\n",i+1,T[i].prod.nama,T[i].prod.harga,T[i].banyak,T[i].subtotal,T[i].tanggal)
 		i++
 	}
-	fmt.Println("---------------------------------------------------------------------------------------------")
+	fmt.Println("--------------------------------------------------------------------------------------------")
 }
 
 func hitungOmzet(T tabTrans, n int, tgl string)int{
@@ -236,6 +236,7 @@ func selSortTrans(A *tabTrans, n int){
 	var temp transaksi
 
 	fmt.Println("Urutkan berdasarkan subtotal:\n1. Terbesar\n2. Terkecil")
+	fmt.Print("Pilihan anda: ")
 	fmt.Scan(&sort)
 
 	pass = n-1
