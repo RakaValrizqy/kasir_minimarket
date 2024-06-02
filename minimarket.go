@@ -94,7 +94,7 @@ func tampilProd(A tabProd, n int){
 	fmt.Println("---------------------------------------------")
 	fmt.Printf("%27s\n","LIST PRODUK")
 	fmt.Println("---------------------------------------------")
-	fmt.Printf("|%5s| %20s| %15s|\n","Nomor","Nama Barang","Harga")
+	fmt.Printf("|%5s| %20s| %15s|\n","Nomor","Nama Produk","Harga")
 	for i<n {
 		// fmt.Println(i+1,".",A[i].nama,A[i].harga)
 		fmt.Printf("|%5d| %20s| %15d|\n",i+1,A[i].nama,A[i].harga)
@@ -205,7 +205,7 @@ func tampilTrans(T tabTrans, n int){
 	fmt.Println("---------------------------------------------------------------------------------------------")
 	fmt.Printf("%50s\n","LIST TRANSAKSI")
 	fmt.Println("---------------------------------------------------------------------------------------------")
-	fmt.Printf("|%5s| %20s| %15s| %8s| %15s| %17s|\n","Nomor","Nama Barang","Harga","Banyak","Subtotal","Tanggal transaksi")
+	fmt.Printf("|%5s| %20s| %15s| %8s| %15s| %17s|\n","Nomor","Nama Produk","Harga","Banyak","Subtotal","Tanggal transaksi")
 	for i<n {
 		fmt.Printf("|%5d| %20s| %15d| %8d| %15d| %17s|\n",i+1,T[i].prod.nama,T[i].prod.harga,T[i].banyak,T[i].subtotal,T[i].tanggal)
 		i++
@@ -231,7 +231,7 @@ func hitungOmzet(T tabTrans, n int, tgl string)int{
 
 func selSortTrans(A *tabTrans, n int){
 	/*	I.S Terdefinisi Array list transaksi A dengan panjang n dan diasumsikan belum terurut
-		F.S Array list transaksi A dengan panjang n terurut secara ascending atau descending sesuai keingininan pengguna*/
+		F.S Array list transaksi A dengan panjang n terurut berdasarkan subtotal secara ascending atau descending sesuai keingininan pengguna menggunakan metode selection sorting*/
 	var i, j, max, min, pass, sort int
 	var temp transaksi
 
@@ -276,6 +276,8 @@ func selSortTrans(A *tabTrans, n int){
 }
 
 func inserSortProd(A *tabProd, n int){
+	/*	I.S Terdefinisi Array list transaksi A dengan panjang n, n adalah banyak data dalam array
+		F.S Array A berisi data produk sebanyak n dan mengurutkan sesuai nama secara ascending menggunakan metode insertion sorting	*/
 	var i, pass int
 	var temp produk
 
