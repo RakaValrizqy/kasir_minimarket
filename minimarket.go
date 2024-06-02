@@ -56,8 +56,8 @@ func main(){
 			fmt.Print("Tanggal transaksi: ")
 			fmt.Scan(&tgl)
 			fmt.Printf("Omzet pada tanggal %s: %d\n",tgl,hitungOmzet(listTrans,nTrans,tgl))
-		default:
-			fmt.Println("Pilih menu 1-9")
+		// default:
+		// 	fmt.Println("Pilih menu 1-9")
 		}
 	}
 
@@ -66,7 +66,7 @@ func main(){
 func menu(){
 	fmt.Println("MAIN MENU")
 	fmt.Println("1. Tambah produk\n2. Cari produk\n3. Ubah produk\n4. Hapus produk\n5. Lihat produk\n6. Tambah transaksi\n7. Tampil transaksi\n8. Omzet berdasarkan tanggal\n9. Exit")
-	fmt.Print("Pilih: ")
+	fmt.Print("Pilih menu 1-9: ")
 }
 
 func tambahProd(A *tabProd, n *int){
